@@ -1,7 +1,7 @@
 package greedy;
 
 import java.util.Scanner;
-
+//https://www.acmicpc.net/problem/1138 
 public class StandinLine {
 
     public static void main(String[] args) {
