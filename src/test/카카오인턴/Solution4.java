@@ -16,12 +16,10 @@ public class Solution4 {
         long want;
         for(int i = 0; i <room_number.length; i++){
             want = room_number[i];
-            if((rooms.get(want)) == null) {
-                rooms.put(want, true);
-            }
-            else {
+            if((rooms.get(want)) != null) {
                 want = getEmptyRoom(want);
             }
+            rooms.put(want, true);
             room_number[i] = want;
         }
         return room_number;
