@@ -1,45 +1,49 @@
 package bfs_dfs;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 //https://programmers.co.kr/learn/courses/30/lessons/43164
 public class TravelPath {
+    private List<String> paths = new LinkedList<>();
 
-    private List<Integer> getAvailable(boolean[] visit, String departure, String[][] tickets){
+    private List<Integer> getAvailable(boolean[] visit, String departure, String[][] tickets) {
         List<Integer> available = new LinkedList<>();
-        for(int i = 0; i < tickets.length; i++){
-            if(departure.equals(tickets[i][0]) && !visit[i])
+        for (int i = 0; i < tickets.length; i++) {
+            if (departure.equals(tickets[i][0]) && !visit[i])
                 available.add(i);
         }
         return available;
     }
 
-    boolean isAllVisited(boolean[] visit){
+    private boolean isAllVisited(boolean[] visit) {
         for (boolean b : visit) {
-            if(!b) return false;
+            if (!b) return false;
         }
         return true;
     }
 
-    private void dfs(boolean[] visit, String[][] tickets, String departure){
+    private void dfs(boolean[] visit, List<String> path, String[][] tickets, String departure) {
         List<Integer> available = getAvailable(visit, departure, tickets);
-        System.out.println(departure);
+        path.add(departure + " ");
         for (Integer a : available) {
-
             boolean[] v = visit.clone();
-            if(isAllVisited(v))
+            List<String> p = new LinkedList<>(path);
+            if (isAllVisited(v))
                 return;
             v[a] = true;
-            dfs(v, tickets, tickets[a][1]);
+            dfs(v, p, tickets, tickets[a][1]);
         }
+
+        if (path.size() == tickets.length + 1)
+            paths.add(String.join("", path));
     }
 
     public String[] solution(String[][] tickets) {
-        String[] answer = {};
-        boolean []visit = new boolean[tickets.length];
-        dfs(visit, tickets, "ICN");
-        return answer;
+        boolean[] visit = new boolean[tickets.length];
+        List<String> path = new LinkedList<>();
+        dfs(visit, path, tickets, "ICN");
+        paths.sort(String::compareTo);
+        return paths.get(0).split(" ");
     }
 
     public static void main(String[] args) {
@@ -48,7 +52,7 @@ public class TravelPath {
                         {"ICN", "ATL"},
                         {"SFO", "ATL"},
                         {"ATL", "ICN"},
-                        {"ATL","SFO"}};
-        new TravelPath().solution(tickets);
+                        {"ATL", "SFO"}};
+        System.out.println(Arrays.toString(new TravelPath().solution(tickets)));
     }
 }
