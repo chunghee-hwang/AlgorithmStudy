@@ -5,8 +5,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 import java.util.function.BiPredicate;
-
-public class CandyPang {
+//https://codeup.kr/problem.php?id=2605
+public class CandyPangBFS {
     private static final int SIZE = 7;
     private static int[][] candies = new int[SIZE][SIZE];
     private static boolean[][] visit = new boolean[SIZE][SIZE];

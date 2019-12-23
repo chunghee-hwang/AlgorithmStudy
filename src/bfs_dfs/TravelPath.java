@@ -43,6 +43,7 @@ public class TravelPath {
         List<String> path = new LinkedList<>();
         dfs(visit, path, tickets, "ICN");
         paths.sort(String::compareTo);
+        System.out.println(paths);
         return paths.get(0).split(" ");
     }
 
