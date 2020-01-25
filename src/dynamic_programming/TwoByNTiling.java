@@ -1,5 +1,5 @@
 package dynamic_programming;
-
+//https://programmers.co.kr/learn/courses/30/lessons/12900
 public class TwoByNTiling {
     private static int[] mem;
     private static int dp(int n){
@@ -13,5 +13,6 @@ public class TwoByNTiling {
     }
     public static void main(String[] args) {
         int n = 4;
+        solution(4);
     }
 }
