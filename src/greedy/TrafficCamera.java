@@ -4,6 +4,7 @@ import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Queue;
+//https://programmers.co.kr/learn/courses/30/lessons/42884
 public class TrafficCamera {
     private int[][] routes;
     private boolean isIntersect(int idx1, int idx2) {
