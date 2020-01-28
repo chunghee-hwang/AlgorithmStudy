@@ -6,8 +6,7 @@ public class Solution3
     private boolean[] visit;
     private final int BIG_NUMBER = 100001;
     private int toNext(int idx, int cnt, int n){
-        if(idx<0 || idx>=n) return BIG_NUMBER;
-        if(visit[idx]) return BIG_NUMBER;
+        if(idx<0 || idx>=n || visit[idx]) return BIG_NUMBER;
         visit[idx] = true;
         cnt++;
         if(idx == n-1) return cnt;
