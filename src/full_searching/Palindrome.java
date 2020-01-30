@@ -1,3 +1,5 @@
+package full_searching;
+
 public class Palindrome {
     private static int palind(char[] chs, int left, int right, int n)
     {
