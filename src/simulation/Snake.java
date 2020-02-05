@@ -1,5 +1,3 @@
-package simulation;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
@@ -18,13 +16,13 @@ public class Snake {
         snake.add(new int[]{0,0});
     }
 
-    private void putApple(int[][] map, int y, int x) {
+    private void putApple(int y, int x) {
         map[y][x] = apple;
     }
 
     // direction> -1 : left, +1: right
-    private void setControl(int[] dirs, int seconds, int control) {
-        dirs[seconds] = control;
+    private void setControl(int seconds, int control) {
+        controls[seconds] = control;
     }
 
     private void loadMap() {
@@ -36,13 +34,13 @@ public class Snake {
             makeMap(n);
             for (a = 0; a < k; a++) {
                 st = new StringTokenizer(br.readLine());
-                putApple(map, Integer.parseInt(st.nextToken()) - 1, Integer.parseInt(st.nextToken()) - 1);
+                putApple(Integer.parseInt(st.nextToken()) - 1, Integer.parseInt(st.nextToken()) - 1);
             }
             int l = Integer.parseInt(br.readLine());
             controls = new int[10001];
             for (a = 0; a < l; a++) {
                 st = new StringTokenizer(br.readLine());
-                setControl(controls, Integer.parseInt(st.nextToken()), st.nextToken().equals("D") ? 1 : -1);
+                setControl(Integer.parseInt(st.nextToken()), st.nextToken().equals("D") ? 1 : -1);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,7 +62,7 @@ public class Snake {
         return map[nextY][nextX] == apple;
     }
 
-    private void moveSnake(int x, int y, int nextY, int nextX) {
+    private void moveSnake(int nextY, int nextX) {
         if (isBorder(nextY, nextX)) return;
         snake.add(new int[]{nextY, nextX});
         int[] tailPos;
@@ -73,11 +71,11 @@ public class Snake {
             map[tailPos[0]][tailPos[1]] = 0;
         }
         map[nextY][nextX] = body;
-
     }
 
     private boolean checkCollide(int nextY, int nextX) {
-        return (isBorder(nextY, nextX) || map[nextY][nextX] == body);
+        if(isBorder(nextY,nextX))return true;
+        return map[nextY][nextX] == body;
     }
 
     private void simulateSnake() {
@@ -97,7 +95,7 @@ public class Snake {
                 seconds++; break;
             }
             else {
-                moveSnake(x,y, nextY, nextX);
+                moveSnake(nextY, nextX);
             }
             seconds++;
             y = nextY;
@@ -108,9 +106,9 @@ public class Snake {
     }
 
     public static void main(String[] args){
-        Snake main = new Snake();
-        main.loadMap();
-        main.simulateSnake();
+        Snake snake = new Snake();
+        snake.loadMap();
+        snake.simulateSnake();
     }
 }
 
