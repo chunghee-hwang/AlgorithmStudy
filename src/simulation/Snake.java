@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
 import java.util.StringTokenizer;
-
+//https://www.acmicpc.net/problem/3190
 public class Snake {
     private int n;
     private int[][] map;
