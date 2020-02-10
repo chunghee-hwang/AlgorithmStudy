@@ -2,7 +2,7 @@ package heap;
 
 import java.util.*;
 //https://programmers.co.kr/learn/courses/30/lessons/42628
-public class BinaryPriorityQueue2 {
+public class BinaryHeap {
     private static class BinaryComparator implements Comparator<Integer>{
         private int direction = 1;
         private Queue<Integer> parentQueue;
@@ -79,7 +79,7 @@ public class BinaryPriorityQueue2 {
     }
     public static void main(String[] args) {
        String[] operations = {"I 19", "I 18", "I 17","I 5","I 5","D 1","D -1"};
-        System.out.println(Arrays.toString(new BinaryPriorityQueue2().solution(operations)));
+        System.out.println(Arrays.toString(new BinaryHeap().solution(operations)));
 
     }
 }
