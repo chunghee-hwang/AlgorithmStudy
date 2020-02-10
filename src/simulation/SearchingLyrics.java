@@ -54,10 +54,9 @@ public class SearchingLyrics {
             boolean b2 = o2.isBack;
             int k1 = 0, k2 = 0;
             if(b1) k1 = 1;
-            if(b2) k2 = 2;
+            if(b2) k2 = 1;
             if(b1 != b2) return k1-k2;
             if(len1 != len2) return len1-len2;
-            if(b1) return new StringBuilder(v1).reverse().compareTo(new StringBuilder(v2).reverse());
             return v1.compareTo(v2);
         });
         System.out.println(Arrays.toString(queryList));
@@ -118,7 +117,7 @@ public class SearchingLyrics {
 
     public static void main(String[] args) {
         String[] words = {"frodo", "front", "frost", "frozen", "frame", "kakao"};
-        String[] queries = {"fro??","fra??", "????o", "fr???", "fro???", "pro?"};
+        String[] queries = {"fro??", "????o", "fr???", "fro???", "pro?"};
         System.out.println(Arrays.toString(new SearchingLyrics().solution(words, queries)));
     }
 }
