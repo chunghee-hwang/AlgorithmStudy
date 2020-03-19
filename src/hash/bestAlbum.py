@@ -1,8 +1,6 @@
 # https://programmers.co.kr/learn/courses/30/lessons/42579
-from collections import Counter
 from functools import cmp_to_key
-musics = []
-def getPlayCntInSameGenre(genre):
+def getPlayCntInSameGenre(genre,musics):
     sameGenres = list(filter(lambda music: music[1] == genre, musics))
     sameGenrePlayCnt = 0
     for idx, genre, play in sameGenres:
@@ -17,7 +15,6 @@ def compareSameGenreMusics(music1, music2):
     return idx1 - idx2
 def solution(genres, plays):
     answer = []
-    global musics
     musics = list(zip(range(len(genres)),genres, plays))
     sameGenreMusics = {}
     genreSet = []
@@ -29,7 +26,7 @@ def solution(genres, plays):
         else: sameGenreMusics[genre].append(music)
     for k,v in sameGenreMusics.items():
         v.sort(key=cmp_to_key(compareSameGenreMusics))
-    genreSet.sort(key=getPlayCntInSameGenre, reverse=True)
+    genreSet.sort(key=lambda g: getPlayCntInSameGenre(g, musics), reverse=True)
     for genre in genreSet:
         answer.extend(list(zip(*sameGenreMusics[genre]))[0][:2])
     return answer
