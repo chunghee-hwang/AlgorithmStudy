@@ -14,16 +14,18 @@ class Truck:
         return 'Truck: weight: {}, travelDistance: {}'.format(self.weight, self.travelDistance)
 
 
-def moveAllTrucksInBridge(bridge):
+def move_all_trucks_in_bridge(bridge):
     for truck in bridge:
         truck.move()
 
 
-def dumpInfo(seconds, curWeight, bridge, trucks):
+def dump_info(seconds, curWeight, bridge, trucks):
     print('\nseconds:', seconds, '\ncurWeight:', curWeight, '\nbridge: ')
-    for truck in bridge: print(truck)
+    for truck in bridge:
+        print(truck)
     print('trucks: ')
-    for truck in trucks: print(truck)
+    for truck in trucks:
+        print(truck)
 
 
 def solution(bridge_length, weight, truck_weights):
@@ -31,16 +33,16 @@ def solution(bridge_length, weight, truck_weights):
     for truck_weight in truck_weights: trucks.append(Truck(truck_weight))
     bridge = deque()
     seconds = 0
-    curweight = 0
+    cur_weight = 0
     while True:
         # dumpInfo(seconds, curWeight, bridge, trucks)
-        moveAllTrucksInBridge(bridge)
+        move_all_trucks_in_bridge(bridge)
         if bridge and bridge[0].travelDistance > bridge_length:
             truck = bridge.popleft()
-            curweight -= truck.weight
-        if trucks and (trucks[0].weight + curweight <= weight):
+            cur_weight -= truck.weight
+        if trucks and (trucks[0].weight + cur_weight <= weight):
             truck = trucks.popleft()
-            curweight += truck.weight
+            cur_weight += truck.weight
             truck.move()
             bridge.append(truck)
         seconds += 1
