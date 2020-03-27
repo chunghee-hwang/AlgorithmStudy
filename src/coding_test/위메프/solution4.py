@@ -1,6 +1,6 @@
 import sys
 
-stations = []
+destinations = []
 
 
 class Destination(tuple):
@@ -30,7 +30,7 @@ def find_rail_path(station, visited, r, sum_of_passengers, num_of_passengers):
     sum_of_passengers += num_of_passengers[station]
 
     if station != 1:
-        stations.append(Destination((station, sum_of_passengers)))
+        destinations.append(Destination((station, sum_of_passengers)))
 
     connected_stations = r[station]
 
@@ -50,5 +50,5 @@ if __name__ == '__main__':
 
     visit = [False for _ in range(n + 1)]
     find_rail_path(1, visit, rails, 0, passengers)
-    num, sum_of_pass = max(stations)
+    num, sum_of_pass = max(destinations)
     print(num, sum_of_pass)
