@@ -1,7 +1,6 @@
 # https://programmers.co.kr/learn/courses/30/lessons/42583?language=python3
 from collections import deque
 
-
 class Truck:
     def __init__(self, weight):
         self.weight = weight
