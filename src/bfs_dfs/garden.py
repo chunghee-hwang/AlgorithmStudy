@@ -2,8 +2,7 @@
 from sys import stdin
 from collections import deque
 
-red_positions = deque()
-green_positions = deque()
+
 def read_line():
     return stdin.readline()
 
@@ -17,7 +16,7 @@ def init_garden(n):
 
 
 def find_liquid_positions(n, m, g):
-    positions = []
+    positions = deque()
     for y in range(n):
         for x in range(m):
             if g[y][x] == 2:
@@ -25,31 +24,36 @@ def find_liquid_positions(n, m, g):
     return positions
 
 
-def put_liquid(positions, idx, red, green):
-    if red == 0 and green == 0:
-        if red_positions and green_positions:
-            print('red_positions:', red_positions, 'green_positions:', green_positions)
-        return
+def dump_green_red(positions, green, red, green_positions, red_positions, idx):
+    if green >= 0 and red >= 0:
+        print('position: {}, idx: {}'.format(positions, idx))
+        print('green: {}, red: {}'.format(green, red))
+        print('green_positions: {}, red_positions: {}\n'.format(green_positions, red_positions))
 
-    len_positions = len(positions)
-    if idx >= len_positions:
+
+def put_liquid(positions, green, red, green_positions, red_positions, idx):
+
+    if green == 0 and red == 0:
+        dump_green_red(positions, green, red, green_positions, red_positions, idx)
         return
-    for idx in range(len_positions):
-        if red > 0 and idx not in green_positions and idx not in red_positions:
-            red_positions.append(idx)
-            put_liquid(positions, idx + 1, red - 1, green)
-            red_positions.pop()
-        if green > 0 and idx not in red_positions and idx not in green_positions:
-            green_positions.append(idx)
-            put_liquid(positions, idx + 1, red, green - 1)
+    for new_idx in range(idx + 1, len(positions)):
+        if green - 1 > -1:
+            green -= 1
+            green_positions.append(positions[new_idx])
+            put_liquid(positions, green, red, green_positions, red_positions, new_idx)
             green_positions.pop()
+            green += 1
+
+        if red - 1 > -1:
+            red -= 1
+            red_positions.append(positions[new_idx])
+            put_liquid(positions, green, red, green_positions, red_positions, new_idx)
+            red_positions.pop()
+            red += 1
 
 
 if __name__ == '__main__':
     len_row, len_column, len_green, len_red = read_ints()
     garden = init_garden(len_row)
     liquid_positions = find_liquid_positions(len_row, len_column, garden)
-    print(garden)
-    print(liquid_positions)
-
-    put_liquid(liquid_positions, 0, len_red, len_green)
+    put_liquid(liquid_positions, len_green, len_red, deque(), deque(), -1)
