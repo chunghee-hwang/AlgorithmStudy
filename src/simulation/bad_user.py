@@ -1,7 +1,7 @@
 # https://programmers.co.kr/learn/courses/30/lessons/64064
 import re
 from functools import reduce
-
+from collections import defaultdict
 banned_list = []
 answer_set = set()
 
@@ -20,17 +20,17 @@ def find_comb(n, ns):
     idxs = [0 for _ in range(n)]
     case = reduce(lambda x, y: x * y, ns)
     for _ in range(case):
-        visit = {}
+        visit = defaultdict(bool)
         valid_comb = True
         comb_tuple = []
         for i in range(n):
             comb = banned_list[i][idxs[i]]
             comb_tuple.append(comb)
-            if comb not in visit:
-                visit[comb] = True
-            else:
+            if visit[comb]:
                 valid_comb = False
                 break
+            else:
+                visit[comb] = True
         if valid_comb:
             answer_set.add(tuple(sorted(comb_tuple)))
         plus_idxs(idxs, ns, n - 1)
