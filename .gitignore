@@ -1,6 +1,7 @@
 *.class
 *.iml
 *.xml
-./.idea/
-out/
-venv/
+./.idea/*
+out/*
+venv/*
+src/coding_test/*
