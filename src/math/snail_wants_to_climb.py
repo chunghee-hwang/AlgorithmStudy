@@ -1,3 +1,4 @@
+# https://www.acmicpc.net/problem/2869
 from sys import stdin
 import math
 if __name__ == '__main__':
