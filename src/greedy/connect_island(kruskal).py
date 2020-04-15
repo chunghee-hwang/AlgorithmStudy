@@ -1,6 +1,4 @@
 # https://programmers.co.kr/learn/courses/30/lessons/42861
-parent = []
-level = []
 
 
 #  집합 초기화
