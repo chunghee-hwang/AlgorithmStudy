@@ -1,3 +1,4 @@
+# https://www.acmicpc.net/problem/1717
 from sys import stdin
 def read_ints():
     return map(int, stdin.readline().split())
