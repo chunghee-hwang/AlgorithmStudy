@@ -1,46 +1,26 @@
 # https://programmers.co.kr/learn/courses/30/lessons/42628?language=python3
+# 이중우선순위큐
 import heapq
-
-mode_min = -1  # 최소 큐 모드
-mode_max = 1  # 최대 큐 모드
-heap_mode = mode_min
-
-
-# 최소 큐는 최대 큐로, 최대 큐는 최소 큐로 바꾸는 함수
-def switch_heap_to_max_or_min(heap, mode):
-    global heap_mode
-    if heap_mode == mode:
-        return
-    for elem in heap:
-        elem[0] *= -1
-    heapq.heapify(heap)
-    heap_mode = mode
-
-
 def solution(operations):
-    global heap_mode, mode_min, mode_max
-    binary_heap = []
+    answer = []
+    q = []
     for operation in operations:
-        c1, c2 = operation.split()
-        c2 = int(c2)
-        if c1 == 'I':
-            if heap_mode == mode_min:
-                heapq.heappush(binary_heap, [c2, c2])
-            elif heap_mode == mode_max:
-                heapq.heappush(binary_heap, [-c2, c2])
-        elif c1 == 'D':
-            if binary_heap:  # 큐가 차 있을 때
-                switch_heap_to_max_or_min(binary_heap, c2)
-                heapq.heappop(binary_heap)
-
-    if not binary_heap:  # 큐가 비어있을 때
-        return [0, 0]
+        oper, operand = operation.split(' ')
+        operand = int(operand)
+        if oper == 'I':
+            heapq.heappush(q, operand)
+        else:
+            if not q:
+                continue
+            if operand == -1:
+                heapq.heappop(q)
+            else:
+                q.remove(max(q))
+    if q:
+        return [max(q), min(q)]
     else:
-        switch_heap_to_max_or_min(binary_heap, mode_max)
-        max_value = binary_heap[0][1]
-        switch_heap_to_max_or_min(binary_heap, mode_min)
-        min_value = binary_heap[0][1]
-        return [max_value, min_value]
+        return [0,0]
+    return answer
 
 
 if __name__ == '__main__':
