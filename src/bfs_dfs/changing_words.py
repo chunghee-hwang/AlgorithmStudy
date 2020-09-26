@@ -1,6 +1,3 @@
-# 단어 변환
-# https://programmers.co.kr/learn/courses/30/lessons/43163?language=python3
-
 from collections import defaultdict, Counter, deque
 def is_changeable(word1, word2):
     return len(Counter(word1)- Counter(word2))==1
@@ -18,17 +15,13 @@ def solution(begin, target, words):
     for word in words:
         if is_changeable(begin, word):
             nextwords[begin].append(word)
-    visit=defaultdict(bool)
-    q = deque([[begin,0]])
-    visit[begin] = True
+    visit=defaultdict(int)
+    q = deque([begin])
+    visit[begin] = 0
     while q:
-        start,count = q.popleft()
-        if start == target:
-            answer = min(answer, count)
+        start = q.popleft()
         for nextword in nextwords[start]:
             if not visit[nextword]:
-                q.append([nextword, count+1])
-                visit[nextword]=True
-    return answer
-
-solution("hit", "cog", ["hot", "dot", "dog", "lot", "log", "cog"])
+                q.append(nextword)
+                visit[nextword]=visit[start]+1
+    return visit[target]
