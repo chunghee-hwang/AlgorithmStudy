@@ -5,7 +5,7 @@ from collections import defaultdict, Counter, deque
 def is_changeable(word1, word2):
     return len(Counter(word1)- Counter(word2))==1
 def solution(begin, target, words):
-    cand = []
+    answer = len(words)
     if target not in words:
         return 0
     n = len(words)
@@ -15,22 +15,20 @@ def solution(begin, target, words):
             if is_changeable(words[i], words[j]):
                 nextwords[words[i]].append(words[j])
                 nextwords[words[j]].append(words[i])
-    q = deque()
     for word in words:
         if is_changeable(begin, word):
-            q.append([word, defaultdict(bool), 0])
+            nextwords[begin].append(word)
+    visit=defaultdict(bool)
+    q = deque([[begin,0]])
+    visit[begin] = True
     while q:
-        qsize = len(q)
-        for _ in range(qsize):
-            w, visit, cnt = q.popleft()
-            cnt+=1
-            visit[w]=True
-            if w == target:
-                cand.append(cnt)
-                continue
-            for nw in nextwords[w]:
-                if not visit[nw]:
-                    q.append([nw, visit, cnt])
-    return min(cand)
+        start,count = q.popleft()
+        if start == target:
+            answer = min(answer, count)
+        for nextword in nextwords[start]:
+            if not visit[nextword]:
+                q.append([nextword, count+1])
+                visit[nextword]=True
+    return answer
 
 solution("hit", "cog", ["hot", "dot", "dog", "lot", "log", "cog"])
