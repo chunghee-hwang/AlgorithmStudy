@@ -1,4 +1,4 @@
-package full_searching;
+package src.full_searching;
 
 import java.util.Arrays;
 import java.util.LinkedList;

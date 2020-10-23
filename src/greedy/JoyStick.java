@@ -1,4 +1,4 @@
-package greedy;
+package src.greedy;
 //https://programmers.co.kr/learn/courses/30/lessons/42860
 
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package graph;
+package src.graph;
 
 import java.util.ArrayDeque;
 import java.util.LinkedList;

@@ -1,4 +1,4 @@
-package dynamic_programming;
+package src.dynamic_programming;
 
 public class Fibonacci {
     private static long []d = new long[100];

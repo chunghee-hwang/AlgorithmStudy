@@ -1,4 +1,4 @@
-package dynamic_programming;
+package src.dynamic_programming;
 //https://programmers.co.kr/learn/courses/30/lessons/12900
 public class TwoByNTiling {
     private static int[] mem;

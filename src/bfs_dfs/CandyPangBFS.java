@@ -1,4 +1,4 @@
-package bfs_dfs;
+package src.bfs_dfs;
 
 import java.awt.*;
 import java.util.LinkedList;

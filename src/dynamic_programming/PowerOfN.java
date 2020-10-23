@@ -1,4 +1,4 @@
-package dynamic_programming;
+package src.dynamic_programming;
 //https://codeup.kr/problem.php?id=2640
 import java.util.Scanner;
 

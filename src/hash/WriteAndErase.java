@@ -1,4 +1,4 @@
-package hash;
+package src.hash;
 
 import java.util.BitSet;
 import java.util.Scanner;

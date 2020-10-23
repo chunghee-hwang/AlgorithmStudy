@@ -1,4 +1,4 @@
-package greedy;
+package src.greedy;
 
 import java.util.Scanner;
 //https://www.acmicpc.net/problem/1138

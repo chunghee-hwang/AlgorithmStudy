@@ -1,4 +1,4 @@
-package greedy;
+package src.greedy;
 
 // https://www.acmicpc.net/problem/11399
 //인하은행에는 ATM이 1대밖에 없다.
