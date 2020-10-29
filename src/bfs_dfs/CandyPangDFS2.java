@@ -1,4 +1,4 @@
-package src.bfs_dfs;
+
 
 import java.util.Scanner;
 //https://codeup.kr/problem.php?id=2605

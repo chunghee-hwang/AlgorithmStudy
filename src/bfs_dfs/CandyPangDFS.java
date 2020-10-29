@@ -1,4 +1,4 @@
-package src.bfs_dfs;
+
 
 import java.util.Scanner;
 import java.util.function.BiPredicate;

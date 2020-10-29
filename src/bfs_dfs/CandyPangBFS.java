@@ -1,5 +1,3 @@
-package src.bfs_dfs;
-
 import java.awt.*;
 import java.util.LinkedList;
 import java.util.Queue;
