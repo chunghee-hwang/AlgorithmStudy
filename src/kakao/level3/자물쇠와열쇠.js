@@ -55,7 +55,7 @@ function solution(key, lock) {
       newLock[y + padding][x + padding] = lock[y][x];
     }
   }
-  for (let rotateCnt = 0; rotateCnt < 3; rotateCnt++) {
+  for (let rotateCnt = 0; rotateCnt < 4; rotateCnt++) {
     for (let y = 0; y <= newN - M; y++) {
       for (let x = 0; x <= newN - M; x++) {
         insertKey(key, newLock, y, x);
