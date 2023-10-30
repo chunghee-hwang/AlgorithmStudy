@@ -1,11 +1,9 @@
-from collections import defaultdict
+from collections import Counter
 def solution(topping):
     answer = 0
-    left = defaultdict(int)
+    left = Counter()
     leftKeysSize = 0
-    right = defaultdict(int)
-    for idx, t in enumerate(topping):
-        right[t]+=1
+    right = Counter(topping)
     rightKeysSize = len(right.keys())
     for idx, t in enumerate(topping):
         left[t]+=1
